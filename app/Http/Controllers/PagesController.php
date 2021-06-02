@@ -23,4 +23,6 @@ class PagesController extends Controller
             'competitions' => $competitions
         ]);
     }
+
+
 }

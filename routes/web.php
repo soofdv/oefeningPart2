@@ -34,3 +34,8 @@ require __DIR__.'/auth.php';
 route::resource('players', PlayersController::class);
 route::resource('competitions', CompetitionsController::class);
 route::resource('schools', SchoolsController::class);
+
+route::get('schools/{competition}/create', [
+    SchoolsController::class,
+    'create'
+])->name('schools.createFromCompetition');

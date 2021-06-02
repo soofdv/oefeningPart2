@@ -10,6 +10,7 @@ class Player extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
 
     public function school(){
         return $this->belongsTo(School::class , 'school_id');

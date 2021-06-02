@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Competition;
+use App\Models\School;
 
-class PlayersController extends Controller
+class SchoolsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,9 +23,13 @@ class PlayersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        $competition = Competition::findOrFail($id);
+
+        return view('schools.create' , [
+            'competition' => $competition,
+        ]);
     }
 
     /**
@@ -34,7 +40,16 @@ class PlayersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate( $request ,[
+            'name'                  => 'required',
+            'email'                 => 'required',
+            'competition_id'        => 'required',
+        ]);
+
+
+        $school = School::create($request->except(['_token']));
+
+        return redirect()->route('schools.show', $school->id);
     }
 
     /**

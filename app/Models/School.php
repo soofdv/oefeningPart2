@@ -9,6 +9,8 @@ class School extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function competition(){
         return $this->belongsTo(competitionModel::class , 'competition_id');
     }

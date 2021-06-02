@@ -10,6 +10,8 @@ class Competition extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function schools()
     {
         return $this->hasMany(School::class, 'competition_id');
