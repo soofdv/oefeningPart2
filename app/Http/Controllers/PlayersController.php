@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Player;
+use App\Models\Competition;
+use App\Models\School;
 
 class PlayersController extends Controller
 {
@@ -21,9 +24,13 @@ class PlayersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        $school = School::findOrFail($id);
+
+        return view('players.create' , [
+            'school' => $school,
+        ]);
     }
 
     /**
@@ -34,7 +41,15 @@ class PlayersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate( $request ,[
+            'name'             => 'required',
+            'school_id'        => 'required',
+        ]);
+
+
+        $player = Player::create($request->except(['_token']));
+
+        return redirect()->route('schools.show', $player->school_id);
     }
 
     /**

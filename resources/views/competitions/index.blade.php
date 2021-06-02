@@ -15,6 +15,10 @@
                         <p>{{$competition->date}}</p>
                     @endforeach
                         <a class="btn btn-primary" href="{{route('schools.createFromCompetition' , $competition->id)}}">Sign us up!!</a>
+                        <h3 style="margin-top: 2rem">They went before you.</h3>
+                    @foreach($schools as $school)
+                        <p>{{$school->name}}</p>
+                    @endforeach
                 </div>
             </div>
         </div>

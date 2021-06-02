@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Competition;
+use App\Models\School;
 
 class CompetitionsController extends Controller
 {
@@ -15,8 +16,10 @@ class CompetitionsController extends Controller
     public function index()
     {
         $competitions = Competition::all();
+        $schools = School::all();
         return view('competitions.index' , [
             'competitions' => $competitions,
+            'schools'       => $schools,
         ]);
     }
 

@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Competition;
+use App\Models\Player;
 
 class School extends Model
 {
@@ -12,11 +14,11 @@ class School extends Model
     protected $guarded = [];
 
     public function competition(){
-        return $this->belongsTo(competitionModel::class , 'competition_id');
+        return $this->belongsTo(Competition::class , 'competition_id');
     }
 
     public function players()
     {
-        return $this->hasMany(playerModel::class , 'school_id');
+        return $this->hasMany(Player::class , 'school_id');
     }
 }

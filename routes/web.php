@@ -39,3 +39,8 @@ route::get('schools/{competition}/create', [
     SchoolsController::class,
     'create'
 ])->name('schools.createFromCompetition');
+
+route::get('players/{school}/create', [
+    PlayersController::class,
+    'create'
+])->name('players.createFromSchool');

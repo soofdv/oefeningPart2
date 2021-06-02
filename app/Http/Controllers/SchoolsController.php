@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Competition;
 use App\Models\School;
+use App\Models\Player;
 
 class SchoolsController extends Controller
 {
@@ -60,7 +61,12 @@ class SchoolsController extends Controller
      */
     public function show($id)
     {
-        //
+        $school = School::findOrFail($id);
+        $players = Player::all();
+        return view('schools.show', [
+            'school' => $school,
+            'players' => $players,
+        ]);
     }
 
     /**
